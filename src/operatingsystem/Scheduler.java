@@ -27,6 +27,7 @@ public class Scheduler {
 	
 	//ajouter un PCB dans la file
 	public synchronized void addPCBToReadyQueue(PCB pcb) {
+		System.out.println("Ajout du pcb dans la ready queue : "+ pcb.getPid());
 		readyQueue.add(pcb);
 	}
 	

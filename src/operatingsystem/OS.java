@@ -5,6 +5,7 @@
  */
 package operatingsystem;
 
+import interruption.Interruption;
 import interruption.SystemCall;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import plateforme.CPU;
 import plateforme.Disk;
 import plateforme.MMU;
 import plateforme.Memory;
@@ -39,8 +41,10 @@ public class OS extends Application {
 		public static Scheduler scheduler= new Scheduler();
 		public static ProcessGen generateur;
 		public static Disk disk = new Disk();
+		public static CPU cpu = new CPU();
 		public static Executor execute;
 		public static SystemCall systemCall = new SystemCall();
+		public static Interruption interruption = new Interruption();
 		public static int IDProcess = 1;
 	        public static MenuBar menubar;
 	        public static TableView<Process> table;

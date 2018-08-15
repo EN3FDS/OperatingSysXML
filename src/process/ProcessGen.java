@@ -24,23 +24,23 @@ public class ProcessGen extends Thread {
 		switch (a) {
 		case 0:
 			//AppelSystem
-			OS.systemCall.makeSystemCall(a, 1);
+			OS.interruption.makeInterruption(a, 1);
 			break;
 		case 1:
 			//AppelSystem 
-			OS.systemCall.makeSystemCall(a, 1);
+			OS.interruption.makeInterruption(a, 1);
 			break;
 		case 2:
 			//AppelSystem
-			OS.systemCall.makeSystemCall(a, 1);
+			OS.interruption.makeInterruption(a, 1);
 			break;
 		case 3:
 			//AppelSystem
-			OS.systemCall.makeSystemCall(a, 1);
+			OS.interruption.makeInterruption(a, 1);
 			break;
 		case 4:
 			//AppelSystem
-			OS.systemCall.makeSystemCall(a, 1);
+			OS.interruption.makeInterruption(a, 1);
 		}
 		
 	}
@@ -51,15 +51,16 @@ public class ProcessGen extends Thread {
 	
 	public void run() {
 		while(true) {		
-			if (OS.scheduler.getProcessQueue().size() == 5) {
+			if (OS.scheduler.getReadyQueue().size() == 5) {
 				try {
 					System.out.println("###########queue pleine###########");
-					Thread.sleep(5000);
+					System.out.print("La queue est pleine avec : "+ OS.scheduler.getProcessQueue().size());
+					Thread.sleep(3000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}else if (OS.scheduler.getProcessQueue().size() < 5){
+			}else if (OS.scheduler.getReadyQueue().size() < 5){
 				try {
 					//Thread.sleep(1000);
 					int k= Genarate();
