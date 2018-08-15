@@ -84,15 +84,10 @@ public class CPU extends Thread{
 				pcb.setAddressIP((byte) IP);
 				this.randomValueRegisters();
 				if(p.getInstructions().get(i).isInterrupted()) {
-					//on enregistre dans le pcb l'adresse de la prochaine instruction
-					//la on fait appel au gestionnaire d'interruption 
-					//pour l'instant on fait un somple affichage
-					/*
-					 * on fait automatiquement appel au main, 
-					 * qui lui fait appel au scheduler pour ajouter un autre programme a l'execution
-					 * et aussi mettre le pcb dans la file waiting
-					 */
-					
+					System.out.println("\n\t\tInterruption générée");
+					OS.interruption.makeInterruption(11,11);
+					notifyAll();
+
 				}
 				
 

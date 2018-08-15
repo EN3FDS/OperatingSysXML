@@ -4,11 +4,15 @@ package operatingsystem;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
+import interruption.IORequest;
 import process.PCB;
 
 
 public class Scheduler {
 	private static PriorityQueue<PCB> readyQueue = new PriorityQueue<PCB>();
+	
+	//Queue pour les requete IO
+	public static PriorityQueue<IORequest> ioRequestQueue = new PriorityQueue<IORequest>();
 	/*
 	 * le processsQueue permet aussi de faire en sorte que le generate
 	 */
@@ -27,7 +31,6 @@ public class Scheduler {
 	
 	//ajouter un PCB dans la file
 	public synchronized void addPCBToReadyQueue(PCB pcb) {
-		System.out.println("Ajout du pcb dans la ready queue : "+ pcb.getPid());
 		readyQueue.add(pcb);
 	}
 	
@@ -51,5 +54,15 @@ public class Scheduler {
 		});
 		processQueue = new ArrayList<>();
 		processQueue.addAll(list);
+	}
+	
+	//Ajouter une requete a la liste
+	public synchronized void addRequestToIOQueue(IORequest ioRequest){
+		ioRequestQueue.add(ioRequest);
+	}
+	
+	//Retirer une requete de la liste
+	public synchronized IORequest pickRequestFromIOQueue() {
+		return ioRequestQueue.poll();
 	}
 }

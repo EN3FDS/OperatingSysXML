@@ -1,8 +1,9 @@
 package interruption;
 
 import operatingsystem.OS;
+import process.PCB;
 
-public class Interruption {
+public class Interruption extends Thread {
 
 	public Interruption() {
 		super();
@@ -19,8 +20,14 @@ public class Interruption {
 			OS.systemCall.makeSystemCall(a, i);
 			break;
 			
-		case 3: 
+		case 11: 
 			//IO interrupt
+			IORequest ioRequest = new IORequest(OS.RAM.currentPCB, OS.RAM.currentPCB.getPid());
+			OS.scheduler.addRequestToIOQueue(ioRequest);
+			PCB newPCB = OS.scheduler.removePCBFromReadyQueue();
+			
+			OS.cpu.execute(newPCB.getProcess(), newPCB);
+			
 		}
 	}
 
