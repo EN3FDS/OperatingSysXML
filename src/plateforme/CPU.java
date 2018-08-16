@@ -87,14 +87,7 @@ public class CPU extends Thread{
 					System.out.println("\n\t\tInterruption générée");
 					OS.interruption.makeInterruption(11,11);
 					notifyAll();
-
-				}
-				
-
-				
-			}
-			
-			
+				}								
+			}						
 		}
-
 }
