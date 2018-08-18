@@ -5,9 +5,14 @@ import process.PCB;
 import process.Process;
 
 import java.util.Random;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import operatingsystem.OS;
 public class CPU extends Thread{
+	Lock lock = new ReentrantLock();
+	Condition ExecutorCondition = lock.newCondition();
 	
 		private int frequency;
 		private int AX;
@@ -56,38 +61,37 @@ public class CPU extends Thread{
 			flagsRegister = rand.nextInt();
 		}
 
-		public synchronized void execute(Process p, PCB pcb) {//aura une boucle for qui partira de l'adresse actuelle a l'adresse finale du process. si gon interrupt lap fe yon break
-			//epitou, nap fe IP a pran valeur i+1 ki reprezante next adress d'execution. 
-			//le gen interrupt, lap rele main nan kap rele scheduler a kap regle kose li byen pwop
-			// Execute and return the interrupt number
-			/*
-			 * cette methode devra recevoir et le pcb et le process
-			 * le pcb pour savoir l'adresse actuelle permettant de commencer l'execution 
-			 * process pour effectivement faire cette execution
-			 */
+		//cette methode est utilisee par l'executeur 
+		public synchronized void execute(Process p, PCB pcb) {
+			lock.lock();
 			byte i;
-			for (i=pcb.getAddressIP();i<=pcb.getFinalAddress();i++) {
-				IP= i+1;
-				
-				// Quand on arrive a la fin du processus
-				// On génère le systemcall de fin de programme
-				if (pcb.getAddressIP() == pcb.getFinalAddress()) {
-					System.out.println("****************Fin de ce processus*********************");
-					OS.interruption.makeInterruption(10, 0);
-					notifyAll();
+			try {
 
+				for (i=pcb.getAddressIP();i<=pcb.getFinalAddress();i++) {
+					IP= i+1;
+					System.out.println("________ExecutingProcess_______-_ ID =" +pcb.getPid());
+					// Quand on arrive a la fin du processus
+					// On génère le systemcall de fin de programme
+					if (pcb.getAddressIP() == pcb.getFinalAddress()) {
+						System.out.println("********Fin de ce processus********");
+						OS.interruption.makeInterruption(10, 0);
+						lock.unlock();					
+						break;
+					}
 					
-					break;
+					//mise a jour du IP dans le pcb
+					pcb.setAddressIP((byte) IP);
+					this.randomValueRegisters();
+					if(p.getInstructions().get(i).isInterrupted()) {
+						System.out.println("\n\t\tInterruption générée");
+						OS.interruption.makeInterruption(11,11);
+						lock.unlock();
+					}
 				}
-				
-				//mise a jour du IP dans le pcb
-				pcb.setAddressIP((byte) IP);
-				this.randomValueRegisters();
-				if(p.getInstructions().get(i).isInterrupted()) {
-					System.out.println("\n\t\tInterruption générée");
-					OS.interruption.makeInterruption(11,11);
-					notifyAll();
-				}								
-			}						
+			}
+			finally {
+				lock.unlock();
+			}
+																												
 		}
 }

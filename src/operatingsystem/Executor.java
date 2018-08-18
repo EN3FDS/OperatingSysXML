@@ -14,7 +14,12 @@ public class Executor extends Thread {
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(75);
+			}catch(Exception e) {
+				
+			}
+			
+			try {
 				System.out.println("La ready queue a "+OS.scheduler.getReadyQueue().size()+" processus.");
 				//on retire le pcb de la liste readyqueue
 				PCB pcb = OS.scheduler.removePCBFromReadyQueue(); 
@@ -24,10 +29,14 @@ public class Executor extends Thread {
 				
 				System.out.println(this.getName());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				System.out.println("\nexception generated la readyqueue a "+ OS.scheduler.getReadyQueue().size());
-				e.printStackTrace();				
-			}			
+				// TODO Auto-generated catch block			
+			}
+			
+			try {
+				Thread.sleep(75);
+			}catch(Exception e) {
+				
+			}
 		}
 	}
 }

@@ -54,18 +54,20 @@ public class ProcessGen extends Thread {
 			if (OS.scheduler.getReadyQueue().size() == 5) {
 				try {
 					System.out.println("###########queue pleine###########");
-					System.out.print("La queue est pleine avec : "+ OS.scheduler.getProcessQueue().size());
-					Thread.sleep(3000);
+					System.out.println("La queue est pleine avec : "+ OS.scheduler.getProcessQueue().size());
+					Thread.sleep(300);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}else if (OS.scheduler.getReadyQueue().size() < 5){
 				try {
-					//Thread.sleep(1000);
+					Thread.sleep(100);
 					int k= Genarate();
 					witch_process(k);
+					System.out.println("&&&&&&&&Process Generated&&&&&&");
 				} catch (/*Interrupted*/Exception e) {
+					System.out.println("Proces Not Generated");
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
