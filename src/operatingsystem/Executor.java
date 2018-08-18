@@ -14,7 +14,7 @@ public class Executor extends Thread {
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(75);
+				Thread.sleep(150);
 			}catch(Exception e) {
 				
 			}
@@ -33,7 +33,7 @@ public class Executor extends Thread {
 			}
 			
 			try {
-				Thread.sleep(75);
+				Thread.sleep(150);
 			}catch(Exception e) {
 				
 			}

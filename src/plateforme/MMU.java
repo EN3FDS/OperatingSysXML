@@ -12,7 +12,7 @@ public class MMU {
 	/**
 	 * Methode d'allocations et de desallocation de memoire
 	 **/
-	 public synchronized void allocateMemoryToProcess(Process process,int priority) {
+	 public synchronized void allocateMemoryToProcess(Process process,int priority,int numApp) {
 		 
 		 int taille=  process.getSize();
 		 //Diminution de la taille disponible dans la memoire
@@ -26,19 +26,19 @@ public class MMU {
 		 OS.scheduler.addPCBToProcessQueue(PCB);
 		 
 		 //Ajouter le processus dans la liste des process sur le ram
-		 OS.RAM.ListOfProcess.add(process);
+		 OS.RAM.ListOfProcess.add(numApp);
 		 
 
 	 }
 	 
-	 public synchronized void deallocateMemoryFromProcess(Process process) {
+	 public synchronized void deallocateMemoryFromProcess(Process process, int numApp) {
 		 int taille=  process.getSize();
 		 OS.RAM.setTailleDispo(OS.RAM.getTailleDispo()+taille);
 		 
 		 //Retirer le processus de la liste des processus de la liste
-		 ArrayList<Process> list = new ArrayList<>();
+		 ArrayList<Integer> list = new ArrayList<>();
 			OS.RAM.ListOfProcess.forEach(data->{
-				if (data.getId() != process.getId()){
+				if (data != numApp){
 					list.add(data);
 				}
 			});

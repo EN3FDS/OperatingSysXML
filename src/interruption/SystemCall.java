@@ -16,7 +16,7 @@ public class SystemCall {
 		switch (i){
 		case 0: 
 			//Kill a Process			
-			OS.mmu.deallocateMemoryFromProcess(OS.RAM.currentPCB.getProcess());	
+			OS.mmu.deallocateMemoryFromProcess(OS.RAM.currentPCB.getProcess(),numApp);	
 			OS.scheduler.removePCBFromProcessQueue(OS.RAM.currentPCB);
 			break;
 			
@@ -24,6 +24,14 @@ public class SystemCall {
 			try {
 				//System.out.println("SyctemCall generated");
 				//generate process from application on disk
+				
+				// checking if the program is'nt already in memory,
+				//if this is the case, then we just stop the method from running
+				for(int j = 0; j<OS.RAM.ListOfProcess.size(); j++) {
+					if(OS.RAM.ListOfProcess.get(j)== numApp) {
+						return;
+					}
+				}
 				AppFile appFile = (AppFile) Disk.fileOnDisk.get(numApp);
 				Process p = new Process(OS.IDProcess,appFile.getName(),appFile.getInstructions());
 				
@@ -31,7 +39,7 @@ public class SystemCall {
 				OS.IDProcess++; 
 				
 				//Allouer la memoire au processus
-				OS.mmu.allocateMemoryToProcess(p,appFile.getPriority());		
+				OS.mmu.allocateMemoryToProcess(p,appFile.getPriority(),numApp);		
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

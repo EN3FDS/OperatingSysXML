@@ -16,42 +16,15 @@ public class ProcessGen extends Thread {
 		super(s);
 	}
 	
-	public int Genarate() {
-		return  rand.nextInt(5);
-	}
-	
- 	public void witch_process(int a) {
-		switch (a) {
-		case 0:
-			//AppelSystem
-			OS.interruption.makeInterruption(a, 1);
-			break;
-		case 1:
-			//AppelSystem 
-			OS.interruption.makeInterruption(a, 1);
-			break;
-		case 2:
-			//AppelSystem
-			OS.interruption.makeInterruption(a, 1);
-			break;
-		case 3:
-			//AppelSystem
-			OS.interruption.makeInterruption(a, 1);
-			break;
-		case 4:
-			//AppelSystem
-			OS.interruption.makeInterruption(a, 1);
-		}
-		
-	}
-	
-	public static void aff(String s) {
-		System.out.println(s);
-	}
 	
 	public void run() {
 		while(true) {		
 			if (OS.scheduler.getReadyQueue().size() == 5) {
+				try {
+					Thread.sleep(20);
+				}catch(Exception e) {
+					
+				}
 				try {
 					System.out.println("###########queue pleine###########");
 					System.out.println("La queue est pleine avec : "+ OS.scheduler.getProcessQueue().size());
@@ -63,13 +36,18 @@ public class ProcessGen extends Thread {
 			}else if (OS.scheduler.getReadyQueue().size() < 5){
 				try {
 					Thread.sleep(100);
-					int k= Genarate();
-					witch_process(k);
-					System.out.println("&&&&&&&&Process Generated&&&&&&");
+					//Generation du processus
+					OS.interruption.makeInterruption(rand.nextInt(5), 1);
+					
 				} catch (/*Interrupted*/Exception e) {
 					System.out.println("Proces Not Generated");
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+				try {
+					Thread.sleep(20);
+				}catch(Exception e) {
+					
 				}
 			}
 
