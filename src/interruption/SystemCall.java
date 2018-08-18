@@ -15,7 +15,8 @@ public class SystemCall {
 	public void makeSystemCall(int numApp, int i) {
 		switch (i){
 		case 0: 
-			//Kill a Process			
+			//Kill a Process	
+			System.out.println("Appel de systemcall kill process $$$$$$$$$$$$$$$$$$#$$$$$$$$$$4");
 			OS.mmu.deallocateMemoryFromProcess(OS.RAM.currentPCB.getProcess(),numApp);	
 			OS.scheduler.removePCBFromProcessQueue(OS.RAM.currentPCB);
 			break;
@@ -33,7 +34,7 @@ public class SystemCall {
 					}
 				}
 				AppFile appFile = (AppFile) Disk.fileOnDisk.get(numApp);
-				Process p = new Process(OS.IDProcess,appFile.getName(),appFile.getInstructions());
+				Process p = new Process(OS.IDProcess, appFile.getName(), numApp, appFile.getInstructions());
 				
 				//augmenter de 1 la variable qui crée les identifiants pour les processus
 				OS.IDProcess++; 

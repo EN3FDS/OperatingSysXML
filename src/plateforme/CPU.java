@@ -63,6 +63,8 @@ public class CPU extends Thread{
 
 		//cette methode est utilisee par l'executeur 
 		public synchronized void execute(Process p, PCB pcb) {
+			lock.lock();
+			OS.RAM.currentPCB = pcb;
 			byte i;
 			try {
 
@@ -72,10 +74,10 @@ public class CPU extends Thread{
 					// Quand on arrive a la fin du processus
 					// On génère le systemcall de fin de programme
 					if (pcb.getAddressIP() == pcb.getFinalAddress()) {
-						System.out.println("********Fin de ce processus********");
-						OS.interruption.makeInterruption(10, 0);
-				
-						break;
+						System.out.println("########Fin de ce processus########");
+						OS.interruption.makeInterruption(pcb.getProcess().getNumApp(), 0);
+				lock.unlock();
+						return;
 					}
 					
 					//mise a jour du IP dans le pcb
@@ -84,11 +86,13 @@ public class CPU extends Thread{
 					if(p.getInstructions().get(i).isInterrupted()) {
 						System.out.println("\n\t\tInterruption générée");
 						OS.interruption.makeInterruption(11,11);
-
+						lock.unlock();
+						return;
 					}
 				}
 			}
 			finally {
+				lock.unlock();
 			}
 																												
 		}

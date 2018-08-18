@@ -20,7 +20,7 @@ public class Executor extends Thread {
 			}
 			
 			try {
-				System.out.println("La ready queue a "+OS.scheduler.getReadyQueue().size()+" processus.");
+				System.out.println("La ready queue a "+Scheduler.getReadyQueue().size()+" processus.");
 				//on retire le pcb de la liste readyqueue
 				PCB pcb = OS.scheduler.removePCBFromReadyQueue(); 
 				System.out.println("ID du processus: "+ pcb.getPid());

@@ -24,6 +24,7 @@ import process.File;
 import process.Process;
 import process.ProcessGen;
 import view.Graphic;
+import interruption.IOHandler;
 
 /**
  *
@@ -45,6 +46,7 @@ public class OS extends Application {
 		public static Executor execute;
 		public static SystemCall systemCall = new SystemCall();
 		public static Interruption interruption = new Interruption();
+		public static IOHandler ioHandler;
 		public static int IDProcess = 1;
 	        public static MenuBar menubar;
 	        public static TableView<Process> table;
@@ -93,9 +95,11 @@ public class OS extends Application {
 		
 		generateur = new ProcessGen("Generateur");
 		 execute = new Executor("Executeur");
+		 ioHandler = new IOHandler("IOHandler");
 		 System.out.println("Launching threads");
 		generateur.start();
 		execute.start();
+		ioHandler.start();
             //    launch(args);
 		
 	}    

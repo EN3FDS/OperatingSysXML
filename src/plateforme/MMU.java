@@ -32,16 +32,20 @@ public class MMU {
 	 }
 	 
 	 public synchronized void deallocateMemoryFromProcess(Process process, int numApp) {
+			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$"+OS.RAM.ListOfProcess.size());
 		 int taille=  process.getSize();
 		 OS.RAM.setTailleDispo(OS.RAM.getTailleDispo()+taille);
 		 
 		 //Retirer le processus de la liste des processus de la liste
 		 ArrayList<Integer> list = new ArrayList<>();
-			OS.RAM.ListOfProcess.forEach(data->{
-				if (data != numApp){
-					list.add(data);
+			for(int i = 0; i< OS.RAM.ListOfProcess.size(); i++)
+				{
+					if (OS.RAM.ListOfProcess.get(i) != numApp) {
+
+						list.add(OS.RAM.ListOfProcess.get(i));
+					}
 				}
-			});
+
 			OS.RAM.ListOfProcess = new ArrayList<>();
 			OS.RAM.ListOfProcess.addAll(list);
 		 

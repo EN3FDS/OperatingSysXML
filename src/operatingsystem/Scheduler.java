@@ -18,6 +18,10 @@ public class Scheduler {
 	
 	//Queue pour les requete IO
 	public static PriorityQueue<IORequest> ioRequestQueue = new PriorityQueue<IORequest>();
+	public static PriorityQueue<IORequest> getIoRequestQueue() {
+		return ioRequestQueue;
+	}
+
 	/*
 	 * le processsQueue permet aussi de faire en sorte que le generate
 	 */

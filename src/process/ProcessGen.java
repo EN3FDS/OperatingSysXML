@@ -4,7 +4,7 @@ package process;
 import java.util.Random;
 
 import operatingsystem.OS;
-import process.Process;
+import operatingsystem.Scheduler;
 
 public class ProcessGen extends Thread {
 	
@@ -19,7 +19,7 @@ public class ProcessGen extends Thread {
 	
 	public void run() {
 		while(true) {		
-			if (OS.scheduler.getReadyQueue().size() == 5) {
+			if (Scheduler.getReadyQueue().size() == 5) {
 				try {
 					Thread.sleep(20);
 				}catch(Exception e) {
@@ -27,13 +27,13 @@ public class ProcessGen extends Thread {
 				}
 				try {
 					System.out.println("###########queue pleine###########");
-					System.out.println("La queue est pleine avec : "+ OS.scheduler.getProcessQueue().size());
+					System.out.println("La queue est pleine avec : "+ Scheduler.getProcessQueue().size());
 					Thread.sleep(300);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}else if (OS.scheduler.getReadyQueue().size() < 5){
+			}else if (Scheduler.getReadyQueue().size() < 5){
 				try {
 					Thread.sleep(100);
 					//Generation du processus
