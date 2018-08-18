@@ -1,19 +1,27 @@
 package interruption;
 
+import java.util.Random;
+
 import operatingsystem.OS;
 import process.PCB;
 public class IOHandler extends Thread{
+	Random rand =  new Random();
+	int timeSleep;
+	int minTime = 500;
+	int maxTime = 1000;
 	
 	public void run() {
 		while(true) {
-			//Picking the PCB from the IOQueue
-			
+			//Setting the amount of sleeping time for the thread
+			timeSleep = rand.nextInt(maxTime - minTime) + minTime;
+			//Picking the PCB from the IOQueue			
 			PCB pcb;
 			try {
 				
 				pcb = OS.scheduler.pickRequestFromIOQueue().getPcb();
 				
-				Thread.sleep(1000);
+				//Simulates the handling of the IORequest
+				Thread.sleep(timeSleep);
 				
 				OS.scheduler.addPCBToReadyQueue(pcb);
 			} catch (Exception e) {

@@ -70,6 +70,11 @@ public class CPU extends Thread{
 
 				for (i=pcb.getAddressIP();i<=pcb.getFinalAddress();i++) {
 					IP= i+1;
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+					}
 					System.out.println("________ExecutingProcess_______-_ ID =" +pcb.getPid());
 					// Quand on arrive a la fin du processus
 					// On génère le systemcall de fin de programme

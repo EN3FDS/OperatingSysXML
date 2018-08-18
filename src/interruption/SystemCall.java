@@ -16,7 +16,7 @@ public class SystemCall {
 		switch (i){
 		case 0: 
 			//Kill a Process	
-			System.out.println("Appel de systemcall kill process $$$$$$$$$$$$$$$$$$#$$$$$$$$$$4");
+			System.out.println("Appel de systemcall kill process $$$$$$$$$$$$$$$");
 			OS.mmu.deallocateMemoryFromProcess(OS.RAM.currentPCB.getProcess(),numApp);	
 			OS.scheduler.removePCBFromProcessQueue(OS.RAM.currentPCB);
 			break;

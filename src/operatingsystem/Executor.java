@@ -3,9 +3,15 @@ package operatingsystem;
 
 import process.PCB;
 
+import java.util.Random;
+
 import operatingsystem.OS;
 
 public class Executor extends Thread {
+	Random rand =  new Random();
+	int timeSleep;
+	int minTime = 150;
+	int maxTime = 300;
 	
 	public Executor(String string) {//executer un processus
 		// TODO Auto-generated constructor stub
@@ -13,8 +19,9 @@ public class Executor extends Thread {
 	}
 	public void run() {
 		while(true) {
+			timeSleep = rand.nextInt(maxTime - minTime) + minTime;
 			try {
-				Thread.sleep(150);
+				Thread.sleep(timeSleep);
 			}catch(Exception e) {
 				
 			}
@@ -33,7 +40,7 @@ public class Executor extends Thread {
 			}
 			
 			try {
-				Thread.sleep(150);
+				Thread.sleep(timeSleep);
 			}catch(Exception e) {
 				
 			}

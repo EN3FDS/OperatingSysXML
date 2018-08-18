@@ -32,7 +32,7 @@ public class MMU {
 	 }
 	 
 	 public synchronized void deallocateMemoryFromProcess(Process process, int numApp) {
-			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$"+OS.RAM.ListOfProcess.size());
+			//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$"+OS.RAM.ListOfProcess.size());
 		 int taille=  process.getSize();
 		 OS.RAM.setTailleDispo(OS.RAM.getTailleDispo()+taille);
 		 

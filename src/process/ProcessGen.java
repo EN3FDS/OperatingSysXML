@@ -7,8 +7,12 @@ import operatingsystem.OS;
 import operatingsystem.Scheduler;
 
 public class ProcessGen extends Thread {
+	//Setting the timeSleep for the thread
+	Random random =  new Random();
+	int timeSleep;
+	int minTime = 50;
+	int maxTime = 100;
 	
-//	private static ArrayList<Process> ListOfProcess = new ArrayList<>();
 	private Random rand= new Random();
 	int num;
 	//constructor
@@ -18,24 +22,23 @@ public class ProcessGen extends Thread {
 	
 	
 	public void run() {
-		while(true) {		
+		while(true) {	
+			timeSleep = random.nextInt(maxTime - minTime) + minTime;
 			if (Scheduler.getReadyQueue().size() == 5) {
 				try {
-					Thread.sleep(20);
+					Thread.sleep(timeSleep);
 				}catch(Exception e) {
 					
 				}
 				try {
 					System.out.println("###########queue pleine###########");
-					System.out.println("La queue est pleine avec : "+ Scheduler.getProcessQueue().size());
-					Thread.sleep(300);
+					Thread.sleep(3000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}else if (Scheduler.getReadyQueue().size() < 5){
 				try {
-					Thread.sleep(100);
 					//Generation du processus
 					OS.interruption.makeInterruption(rand.nextInt(5), 1);
 					
@@ -45,7 +48,7 @@ public class ProcessGen extends Thread {
 					e.printStackTrace();
 				}
 				try {
-					Thread.sleep(20);
+					Thread.sleep(timeSleep);
 				}catch(Exception e) {
 					
 				}
