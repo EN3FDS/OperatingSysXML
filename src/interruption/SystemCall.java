@@ -52,7 +52,7 @@ public class SystemCall {
 				AppFile appFile = (AppFile) Disk.fileOnDisk.get(numApp);
 				Process p = new Process(OS.IDProcess,appFile.getName(),appFile.getInstructions());
 				
-				//augmenter de 1 la variable qui crée les identifiants pour les processus
+				//augmenter de 1 la variable qui cree les identifiants pour les processus
 				OS.IDProcess++; 
 				
 				//Allouer la memoire au processus
@@ -60,7 +60,7 @@ public class SystemCall {
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println("Processus Non Créé");
+				System.out.println("Processus Non Cree");
 				e.printStackTrace();
 			}		
 

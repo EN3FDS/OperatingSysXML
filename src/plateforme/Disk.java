@@ -69,7 +69,7 @@ public class Disk {
 		// Load Tetris
 		//creation des instructions de l'app
 		System.out.println("Loading Tetris");
-		instructions = new ArrayList<>(); //reinitialisation de lárraylist des instructions
+		instructions = new ArrayList<>(); //reinitialisation de larraylist des instructions
 		for (i = 0; i < 10/*2000*/ ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
@@ -82,7 +82,7 @@ public class Disk {
 		// Load Calculator
 		//creation des instructions de l'app
 		System.out.println("Loading Calculator");
-		instructions = new ArrayList<>(); //reinitialisation de lárraylist des instructions
+		instructions = new ArrayList<>(); //reinitialisation de arraylist des instructions
 		for (i = 0; i < 10 /*1000*/ ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
@@ -95,7 +95,7 @@ public class Disk {
 		// Load Writer
 		//creation des instructions de l'app
 		System.out.println("Loading Writer");
-		instructions = new ArrayList<>(); //reinitialisation de lárraylist des instructions
+		instructions = new ArrayList<>(); //reinitialisation de arraylist des instructions
 		for (i = 0; i < 10 /*3000*/ ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
@@ -108,7 +108,7 @@ public class Disk {
 		// Load FIFA
 		//creation des instructions de l'app
 		System.out.println("Loading FIFA");
-		instructions = new ArrayList<>(); //reinitialisation de lárraylist des instructions
+		instructions = new ArrayList<>(); //reinitialisation de arraylist des instructions
 		for (i = 0; i < 10 /*7000*/ ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);

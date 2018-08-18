@@ -18,10 +18,10 @@ public class MMU {
 		 //Diminution de la taille disponible dans la memoire
 		 OS.RAM.setTailleDispo(OS.RAM.getTailleDispo()-taille);
 		 
-		 //Création du PCB
+		 //Creation du PCB
 		 PCB PCB = new PCB(process , priority);
 		 
-		 //Ajouter le PCB dans les files concernées
+		 //Ajouter le PCB dans les files concernes
 		 OS.scheduler.addPCBToReadyQueue(PCB); 
 		 OS.scheduler.addPCBToProcessQueue(PCB);
 		 

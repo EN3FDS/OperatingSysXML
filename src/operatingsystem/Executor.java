@@ -33,12 +33,12 @@ private static ArrayList<Process> ListOfProcess = new ArrayList<>();
 							pcb.setAddressIP((byte) (pcb.getAddressIP() + 1));
 							// Si on trouve une interruption
 							if (pcb.getProcess().getInstructions().get(j).isInterrupted()) {
-								//faire línterruption
+								//faire linterruption
 							}
 							
 						
 							// Quand on arrive a la fin du processus
-							// On génère le systemcall de fin de programme
+							// On genere le systemcall de fin de programme
 							if (pcb.getAddressIP() == pcb.getFinalAddress()) {
 								System.out.println("****************FIn de ce processus*********************");
 								OS.systemCall.makeSystemCall(10, 0);

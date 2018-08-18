@@ -25,7 +25,7 @@ import view.Graphic;
 
 /**
  *
- * @author Nahomie Labonté
+ * @author Nahomie Labontï¿½
  */
 public class OS extends Application {
 	// fichier root
@@ -49,15 +49,15 @@ public class OS extends Application {
 
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage)  {
         // System.out.println("hello");
-/*		try {
-			Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+		try {
+			//Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
 	                System.out.println("hello");
 	                primaryStage.setTitle("LALA-OS");
 			BorderPane root = new BorderPane(); 
 			Scene scene = new Scene(root,800,550, Color.WHITESMOKE);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		//	scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 	              
 	                    //***********MENU**********
@@ -72,7 +72,7 @@ public class OS extends Application {
 	                    root.setRight(table);
 		} catch(Exception e) {
 			e.printStackTrace();
-		}*/
+		}
     }
     
     
@@ -92,7 +92,7 @@ public class OS extends Application {
 		 System.out.println("Launching threads");
 		generateur.start();
 		execute.start();
-            //    launch(args);
+               launch(args);
 		
 	}    
 }

@@ -23,8 +23,7 @@ public class Instruction {
 		return address;
 	}
 	
-	/*Dis quel type dínterruption est generee
-	dependemment dy type, il sera géré de tel ou tel façon.*/
+	/*Dis quel type dinterruption est generee dependemment dy type, il sera gere de tel ou tel facon.*/
 	public short getTypeOfInterruption() { 
 		typeOfInterruption = (short) rand.nextInt(5);
 		return typeOfInterruption;
