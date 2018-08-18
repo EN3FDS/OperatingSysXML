@@ -3,12 +3,17 @@ package operatingsystem;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import interruption.IORequest;
 import process.PCB;
 
 
+
 public class Scheduler {
+	public static Lock lock = new ReentrantLock();
+	
 	private static PriorityQueue<PCB> readyQueue = new PriorityQueue<PCB>();
 	
 	//Queue pour les requete IO
@@ -31,17 +36,38 @@ public class Scheduler {
 	
 	//ajouter un PCB dans la file
 	public synchronized void addPCBToReadyQueue(PCB pcb) {
-		readyQueue.add(pcb);
+		lock.lock();
+		try {
+			readyQueue.add(pcb);
+		}
+		finally {
+			lock.unlock();
+		}
+		
 	}
 	
 	public synchronized void addPCBToProcessQueue(PCB pcb) {
-		processQueue.add(pcb);
+		lock.lock();
+		try {
+			processQueue.add(pcb);
+		}
+		finally {
+			lock.unlock();
+		}
+		
 	}
 	
 	//enlever un PCB de la queue
 	
 	public synchronized PCB removePCBFromReadyQueue() {
-		return readyQueue.poll();
+		lock.lock();
+		try {
+			return readyQueue.poll();
+		}
+		finally {
+			lock.unlock();
+		}
+		
 	}
 	// Enlever un element de la liste ProcessQUEUE
 	
@@ -58,11 +84,23 @@ public class Scheduler {
 	
 	//Ajouter une requete a la liste
 	public synchronized void addRequestToIOQueue(IORequest ioRequest){
-		ioRequestQueue.add(ioRequest);
+		lock.lock();
+		try {
+			ioRequestQueue.add(ioRequest);
+		}
+		finally {
+			lock.unlock();
+		}		
 	}
 	
 	//Retirer une requete de la liste
 	public synchronized IORequest pickRequestFromIOQueue() {
-		return ioRequestQueue.poll();
+		lock.lock();
+		try {
+			return ioRequestQueue.poll();
+		}
+		finally {
+			lock.unlock();
+		}		
 	}
 }
