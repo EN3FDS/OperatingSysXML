@@ -8,11 +8,17 @@ import java.util.Random;
 import operatingsystem.OS;
 
 public class Executor extends Thread {
+	
+	/*Cette portion de code genere un nombre aleatoire 
+	 * qui permet de simuler le temps de traitement du processus
+	 */
 	Random rand =  new Random();
 	int timeSleep;
 	int minTime = 150;
 	int maxTime = 300;
 	
+	/*Constructor
+	 */
 	public Executor(String string) {//executer un processus
 		// TODO Auto-generated constructor stub
 		super(string);

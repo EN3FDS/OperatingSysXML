@@ -31,11 +31,13 @@ public class Memory {
 		return NbreDePages;
 	}
 
+	
 	/*
 	 * Getter et Setter de la liste de Process
+	 * Cette methode retournr la liste des numeros des applications existant sur la memoire
+	 * elle est utilisee par le generateur de processus pour savoir si un processus est deja en memoire ou pas
+	 * 
 	 */
-
-
 	public ArrayList<Integer> getListOfProcess() {
 		return ListOfProcess;
 	}

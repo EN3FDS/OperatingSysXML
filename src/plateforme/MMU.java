@@ -37,6 +37,10 @@ public class MMU {
 		 OS.RAM.setTailleDispo(OS.RAM.getTailleDispo()+taille);
 		 
 		 //Retirer le processus de la liste des processus de la liste
+		 /* on parcourt laliste de processus deja dans la memoire et 
+		  * une fois que l'on trouve une correspondance avec le processus que l'on veut tuer,
+		  *  on l'emleve de la liste
+		  */
 		 ArrayList<Integer> list = new ArrayList<>();
 			for(int i = 0; i< OS.RAM.ListOfProcess.size(); i++)
 				{

@@ -7,7 +7,10 @@ import operatingsystem.OS;
 import operatingsystem.Scheduler;
 
 public class ProcessGen extends Thread {
-	//Setting the timeSleep for the thread
+	
+	/*Cette portion de code genere un nombre aleatoire 
+	 * qui permet de simuler le temps de traitement du processus
+	 */
 	Random random =  new Random();
 	int timeSleep;
 	int minTime = 50;
@@ -61,31 +64,6 @@ public class ProcessGen extends Thread {
 
 }
 	
-/*	private static void Verification(int id,Process p) {		
-		int i=0;
-		ListOfProcess = Main.RAM.getListOfProcess();
-		System.out.println("Probleme:"+p.toString());
-		do {
-			for( i=0;i<ListOfProcess.size();i++) {
-				
-				if( id == ListOfProcess.get(i).getId()) {
-					
-					break;
-				}
-			}
-			if( id == ListOfProcess.get(i).getId()) {
-				break;
-			}
-			else {
-				CreateAndAddPCB(p);
-				break;
-			}
-			
-		}
-		while(true);
-	}
-	
-*/
 
 
 

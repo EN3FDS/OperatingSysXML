@@ -10,15 +10,23 @@ public class Interruption extends Thread {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void makeInterruption(int a, int i) {
+	
+	/**
+	 * Cette methode permet de generer des interruptions
+	 * elle s'apparente a l'interruption vector table des 
+	 * vrais systemes d'exploitations. 
+	 * @param nummApp
+	 * @param numInterruption
+	 */
+	public void makeInterruption(int nummApp, int numInterruption) {
 		
-		switch (i) {
+		switch (numInterruption) {
 		case 0:
 		case 1:
-			//On ne met rien dans ce case car que línterruption soit un ou 2 on fait appel a la meme 
+			//On ne met rien dans ce case car que l'interruption soit 0, un ou 2 on fait appel a la meme 
 			// fonction. 
 		case 2:
-			OS.systemCall.makeSystemCall(a, i);
+			OS.systemCall.makeSystemCall(nummApp, numInterruption);
 			break;
 			
 		case 11: 

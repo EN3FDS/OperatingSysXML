@@ -30,6 +30,9 @@ public class Disk {
 			tailleDispo = tailleDispo - file.getInstructions().size();
 	}
 	
+	/*
+	 * Load The OS to the Disk
+	 */
 	public void loadOS() {
 		ArrayList<Instruction> instructions = new ArrayList<>();
 		Random rand = new Random();
@@ -48,6 +51,12 @@ public class Disk {
 		
 	}
 
+	/*
+	 * Load the applications to the disk 
+	 * this method creates the app and its instruction.
+	 * a random generator tells which istruction provides interruption.
+	 * 
+	 */
 	public void loadAppOnDisk() {
 		ArrayList<Instruction> instructions = new ArrayList<>();
 		Random rand = new Random();
@@ -69,7 +78,7 @@ public class Disk {
 		// Load Tetris
 		//creation des instructions de l'app
 		System.out.println("Loading Tetris");
-		instructions = new ArrayList<>(); //reinitialisation de lárraylist des instructions
+		instructions = new ArrayList<>(); //reinitialisation de l'arraylist des instructions
 		for (i = 0; i < 10/*2000*/ ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
@@ -82,7 +91,7 @@ public class Disk {
 		// Load Calculator
 		//creation des instructions de l'app
 		System.out.println("Loading Calculator");
-		instructions = new ArrayList<>(); //reinitialisation de lárraylist des instructions
+		instructions = new ArrayList<>(); //reinitialisation de l'ArrayList des instructions
 		for (i = 0; i < 10 /*1000*/ ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
@@ -95,7 +104,7 @@ public class Disk {
 		// Load Writer
 		//creation des instructions de l'app
 		System.out.println("Loading Writer");
-		instructions = new ArrayList<>(); //reinitialisation de lárraylist des instructions
+		instructions = new ArrayList<>(); //reinitialisation de l'ArrayList des instructions
 		for (i = 0; i < 10 /*3000*/ ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
@@ -108,7 +117,7 @@ public class Disk {
 		// Load FIFA
 		//creation des instructions de l'app
 		System.out.println("Loading FIFA");
-		instructions = new ArrayList<>(); //reinitialisation de lárraylist des instructions
+		instructions = new ArrayList<>(); //reinitialisation de l'ArrayList des instructions
 		for (i = 0; i < 10 /*7000*/ ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);

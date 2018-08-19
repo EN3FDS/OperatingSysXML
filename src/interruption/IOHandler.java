@@ -5,6 +5,10 @@ import java.util.Random;
 import operatingsystem.OS;
 import process.PCB;
 public class IOHandler extends Thread{
+	
+	/*Cette portion de code genere un nombre aleatoire 
+	 * qui permet de simuler le temps de traitement du processus
+	 */
 	Random rand =  new Random();
 	int timeSleep;
 	int minTime = 500;
