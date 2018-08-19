@@ -61,7 +61,13 @@ public class CPU extends Thread{
 			flagsRegister = rand.nextInt();
 		}
 
-		//cette methode est utilisee par l'executeur 
+		/**cette methode est utilisee par l'executeur
+		 * Elle permet d'executer les instructions du processus un par un. 
+		 *  Arrive a une instruction generant une onterruption, elle fait 
+		 *  appel au gestionnaire d'inturreption.
+		 * @param p
+		 * @param pcb
+		 */
 		public synchronized void execute(Process p, PCB pcb) {
 			lock.lock();
 			OS.RAM.currentPCB = pcb;
