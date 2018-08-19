@@ -52,24 +52,27 @@ public class OS extends Application {
     public void start(Stage primaryStage)  {
         // System.out.println("hello");
 		try {
-			//Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-	                System.out.println("hello");
+			Parent rot = FXMLLoader.load(getClass().getResource("/operatingsystem/Login.fxml"));
+                        Scene sc = new Scene(rot);
+                        primaryStage.setScene(sc);
+	             //   System.out.println("hello");
 	                primaryStage.setTitle("LALA-OS");
-			BorderPane root = new BorderPane(); 
-			Scene scene = new Scene(root,800,550, Color.WHITESMOKE);
-		//	scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
+                        primaryStage.show();
+			//BorderPane root = new BorderPane(); 
+			//Scene scene = new Scene(root,800,550, Color.WHITESMOKE);
+		// start	scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			//primaryStage.setScene(scene);
 	              
 	                    //***********MENU**********
 	                    
-	                    menubar = new MenuBar(); 
-	                    menubar = Graphic.menu();
-	                    root.setTop(menubar);
-	                    primaryStage.show();
+	                 //   menubar = new MenuBar(); 
+	                 //   menubar = Graphic.menu();
+	                 //   root.setTop(menubar);
+	                 //   primaryStage.show();
 	                    
-	                    table = new TableView<>();
-	                    table = Graphic.tabview();
-	                    root.setRight(table);
+	                 //   table = new TableView<>();
+	                  //  table = Graphic.tabview();
+	                  //  root.setRight(table);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

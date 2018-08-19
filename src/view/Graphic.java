@@ -11,13 +11,20 @@ package view;
  */
 
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import process.Process;
 
 
@@ -69,6 +76,30 @@ public class Graphic implements Runnable {
 		return table;
 	}
     
+    
+       public static Tab Overview(){
+                Tab over = new Tab("Overview");
+                BorderPane root = new BorderPane();
+               VBox global_vbox = new VBox();
+		HBox hbox = new HBox();
+		VBox label_vbox = new VBox();
+		TableView<Process> table = new TableView<>();
+                table = Graphic.tabview();
+		hbox.setAlignment(Pos.CENTER_RIGHT);
+		HBox.setMargin(table, new Insets(0, 0, 0, 100));
+		hbox.getChildren().addAll(table);
+		global_vbox.getChildren().addAll(root, hbox, label_vbox);
+		over.setContent(global_vbox);
+		over.setClosable(false);
+                
+                 TabPane tabpane = new TabPane();
+			//tabpane.setSide(Side.LEFT);
+			//tabpane.setNodeOrientation(NodeOrientation.INHERIT);
+                
+                tabpane.getTabs().setAll(over);
+                
+                return(over);
+    }
     
     public void run(){
         
