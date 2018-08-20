@@ -11,37 +11,13 @@ public class SystemCall {
 	public SystemCall() {
 		// TODO Auto-generated constructor stub
 	}
-/*	
-	public SystemCall(String name, short address) {
-		this.name=name;
-		this.address=address;
-	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public short getAddress() {
-		return address;
-	}
-
-	public void setAddress(short address) {
-		this.address = address;
-	}
-
-	public int getSIZE() {
-		return SIZE;
-	}
-*/
 	public void makeSystemCall(int numApp, int i) {
 		switch (i){
 		case 0: 
-			//Kill a Process			
-			OS.mmu.deallocateMemoryFromProcess(OS.RAM.currentPCB.getProcess());	
+			//Kill a Process	
+			System.out.println("Killing Process %%%%%%%%%%%");
+			OS.mmu.deallocateMemoryFromProcess(OS.RAM.currentPCB.getProcess(),numApp);	
 			OS.scheduler.removePCBFromProcessQueue(OS.RAM.currentPCB);
 			break;
 			
@@ -49,14 +25,22 @@ public class SystemCall {
 			try {
 				//System.out.println("SyctemCall generated");
 				//generate process from application on disk
+				
+				// checking if the program is'nt already in memory,
+				//if this is the case, then we just stop the method from running
+				for(int j = 0; j<OS.RAM.ListOfProcess.size(); j++) {
+					if(OS.RAM.ListOfProcess.get(j)== numApp) {
+						return;
+					}
+				}
 				AppFile appFile = (AppFile) Disk.fileOnDisk.get(numApp);
-				Process p = new Process(OS.IDProcess,appFile.getName(),appFile.getInstructions());
+				Process p = new Process(OS.IDProcess, appFile.getName(), numApp, appFile.getInstructions());
 				
 				//augmenter de 1 la variable qui crée les identifiants pour les processus
 				OS.IDProcess++; 
 				
 				//Allouer la memoire au processus
-				OS.mmu.allocateMemoryToProcess(p,appFile.getPriority());		
+				OS.mmu.allocateMemoryToProcess(p,appFile.getPriority(),numApp);		
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

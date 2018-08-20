@@ -9,7 +9,7 @@ public class Memory {
 	//definition de la taille de la memoire
 	
 	private final static int taille = 1024*1024; // taille en MB
-	public ArrayList<Process> ListOfProcess = new ArrayList<>();
+	public ArrayList<Integer> ListOfProcess = new ArrayList<>();
 	private static int NbreDePages = taille*1024/4; //la taille des pages est de 4k
 	private int tailleDispo=taille;
 	
@@ -31,12 +31,14 @@ public class Memory {
 		return NbreDePages;
 	}
 
+	
 	/*
 	 * Getter et Setter de la liste de Process
+	 * Cette methode retournr la liste des numeros des applications existant sur la memoire
+	 * elle est utilisee par le generateur de processus pour savoir si un processus est deja en memoire ou pas
+	 * 
 	 */
-
-
-	public ArrayList<Process> getListOfProcess() {
+	public ArrayList<Integer> getListOfProcess() {
 		return ListOfProcess;
 	}
 	
@@ -46,6 +48,7 @@ public class Memory {
 	public int getTaille() {
 		return taille;
 	}
+	
 	
 
 }

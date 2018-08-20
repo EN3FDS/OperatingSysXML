@@ -4,11 +4,18 @@ package process;
 import java.util.Random;
 
 import operatingsystem.OS;
-import process.Process;
+import operatingsystem.Scheduler;
 
 public class ProcessGen extends Thread {
 	
-//	private static ArrayList<Process> ListOfProcess = new ArrayList<>();
+	/*Cette portion de code genere un nombre aleatoire 
+	 * qui permet de simuler le temps de traitement du processus
+	 */
+	Random random =  new Random();
+	int timeSleep;
+	int minTime = 50;
+	int maxTime = 100;
+	
 	private Random rand= new Random();
 	int num;
 	//constructor
@@ -16,57 +23,37 @@ public class ProcessGen extends Thread {
 		super(s);
 	}
 	
-	public int Genarate() {
-		return  rand.nextInt(5);
-	}
-	
- 	public void witch_process(int a) {
-		switch (a) {
-		case 0:
-			//AppelSystem
-			OS.systemCall.makeSystemCall(a, 1);
-			break;
-		case 1:
-			//AppelSystem 
-			OS.systemCall.makeSystemCall(a, 1);
-			break;
-		case 2:
-			//AppelSystem
-			OS.systemCall.makeSystemCall(a, 1);
-			break;
-		case 3:
-			//AppelSystem
-			OS.systemCall.makeSystemCall(a, 1);
-			break;
-		case 4:
-			//AppelSystem
-			OS.systemCall.makeSystemCall(a, 1);
-		}
-		
-	}
-	
-	public static void aff(String s) {
-		System.out.println(s);
-	}
 	
 	public void run() {
-		while(true) {		
-			if (OS.scheduler.getProcessQueue().size() == 5) {
+		while(true) {	
+			timeSleep = random.nextInt(maxTime - minTime) + minTime;
+			if (Scheduler.getReadyQueue().size() == 5) {
+				try {
+					Thread.sleep(timeSleep);
+				}catch(Exception e) {
+					
+				}
 				try {
 					System.out.println("###########queue pleine###########");
-					Thread.sleep(5000);
+					Thread.sleep(3000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}else if (OS.scheduler.getProcessQueue().size() < 5){
+			}else if (Scheduler.getReadyQueue().size() < 5){
 				try {
-					//Thread.sleep(1000);
-					int k= Genarate();
-					witch_process(k);
+					//Generation du processus
+					OS.interruption.makeInterruption(rand.nextInt(5), 1);
+					
 				} catch (/*Interrupted*/Exception e) {
+					System.out.println("Proces Not Generated");
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+				try {
+					Thread.sleep(timeSleep);
+				}catch(Exception e) {
+					
 				}
 			}
 
@@ -77,31 +64,6 @@ public class ProcessGen extends Thread {
 
 }
 	
-/*	private static void Verification(int id,Process p) {		
-		int i=0;
-		ListOfProcess = Main.RAM.getListOfProcess();
-		System.out.println("Probleme:"+p.toString());
-		do {
-			for( i=0;i<ListOfProcess.size();i++) {
-				
-				if( id == ListOfProcess.get(i).getId()) {
-					
-					break;
-				}
-			}
-			if( id == ListOfProcess.get(i).getId()) {
-				break;
-			}
-			else {
-				CreateAndAddPCB(p);
-				break;
-			}
-			
-		}
-		while(true);
-	}
-	
-*/
 
 
 

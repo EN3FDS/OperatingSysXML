@@ -6,13 +6,15 @@ public class Process {
 	private int id;
 	private String nom;
 	private int size;
+	private int numApp;
 	
 	private ArrayList<Instruction> instructions= new ArrayList<>();
 	//Constructor
-	public Process(int i, String s,ArrayList<Instruction> instructions) {
+	public Process(int i, String s,int app,ArrayList<Instruction> instructions) {
 		this.id = i;
 		this.nom = s;
 		this.instructions = instructions;
+		numApp = app;
 	}
 	public ArrayList<Instruction> getInstructions() {
 		return instructions;
@@ -29,6 +31,9 @@ public class Process {
 	}
 	public int getSize() {
 		return size;
+	}
+	public int getNumApp() {
+		return numApp;
 	}
 
 
