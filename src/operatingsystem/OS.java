@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import plateforme.CPU;
+import plateforme.CommonSpace;
 import plateforme.Disk;
 import plateforme.MMU;
 import plateforme.Memory;
@@ -47,7 +48,9 @@ public class OS extends Application {
 		public static SystemCall systemCall = new SystemCall();
 		public static Interruption interruption = new Interruption();
 		public static IOHandler ioHandler;
+		public static CommonSpace info =  new CommonSpace(true);
 		public static int IDProcess = 1;
+
 	        public static MenuBar menubar;
 	        public static TableView<Process> table;
 	        
