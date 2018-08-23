@@ -14,6 +14,8 @@ public class Scheduler {
 	 */
 	private static ArrayList<PCB> processQueue = new ArrayList<>();
 	
+        
+        
 	//Getters and Setters
 	public static ArrayList<PCB> getProcessQueue() {
 		return processQueue;
@@ -51,4 +53,7 @@ public class Scheduler {
 		processQueue = new ArrayList<>();
 		processQueue.addAll(list);
 	}
+        
+        
+        
 }

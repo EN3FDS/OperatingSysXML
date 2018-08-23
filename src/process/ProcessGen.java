@@ -11,6 +11,11 @@ public class ProcessGen extends Thread {
 //	private static ArrayList<Process> ListOfProcess = new ArrayList<>();
 	private Random rand= new Random();
 	int num;
+        public static boolean manualOn = false;
+        public static int idProcess;
+	public static int idApp;
+	public static int numInt;
+	public static int numSC;
 	//constructor
 	public ProcessGen(String s) {
 		super(s);

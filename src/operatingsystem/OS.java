@@ -8,9 +8,12 @@ package operatingsystem;
 import interruption.SystemCall;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -44,35 +47,47 @@ public class OS extends Application {
 		public static int IDProcess = 1;
 	        public static MenuBar menubar;
 	        public static TableView<Process> table;
-	        
+	          public static Tab overview;
+                  public static Graphic graphic;
 	        
 
     
     @Override
-    public void start(Stage primaryStage)  {
+    public void start(Stage stage)  {
         // System.out.println("hello");
 		try {
-			Parent rot = FXMLLoader.load(getClass().getResource("/operatingsystem/Login.fxml"));
-                        Scene sc = new Scene(rot);
-                        primaryStage.setScene(sc);
-	             //   System.out.println("hello");
-	                primaryStage.setTitle("LALA-OS");
-                        primaryStage.show();
-			//BorderPane root = new BorderPane(); 
-			//Scene scene = new Scene(root,800,550, Color.WHITESMOKE);
-		// start	scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			//primaryStage.setScene(scene);
-	              
-	                    //***********MENU**********
-	                    
-	                 //   menubar = new MenuBar(); 
-	                 //   menubar = Graphic.menu();
-	                 //   root.setTop(menubar);
-	                 //   primaryStage.show();
-	                    
-	                 //   table = new TableView<>();
-	                  //  table = Graphic.tabview();
-	                  //  root.setRight(table);
+                        Graphic root = new Graphic();
+                        Scene scene = new Scene(root,800,450, Color.DARKTURQUOISE);
+			 stage.setTitle("LALA-OS");
+                         stage.setResizable(false);
+			 stage.setScene(scene);
+			stage.show();
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			
+                  
+                        /***********MENU**********/
+                        
+                    //    menubar = new MenuBar(); 
+                    //    menubar = Graphic.menu();
+                    //    root.setTop(menubar);
+                     //   primaryStage.show();
+                        
+                       // table = new TableView<>();
+                       // table = Graphic.tabview();
+                       // root.setRight(table);
+                        
+                       // TabPane tabpane = new TabPane();
+			//tabpane.setSide(Side.LEFT);
+			//tabpane.setNodeOrientation(NodeOrientation.INHERIT);
+                     //  BorderPane.setAlignment(tabpane, Pos.TOP_RIGHT);
+			//BorderPane.setMargin(tabpane, new Insets(5, 5, 3, 5));
+                      //  overview = new Tab();
+                      //  overview = Graphic.Overview();
+                      //  tabpane.getTabs().setAll(overview);
+                       // root.setCenter(tabpane);
+                        
+                       // overview.setClosable(false);
+                       
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

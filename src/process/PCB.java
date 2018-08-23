@@ -3,6 +3,8 @@ package process;
 
 import java.time.Instant;
 import java.util.Date;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 
 public class PCB implements Comparable<PCB> {
@@ -74,5 +76,13 @@ public class PCB implements Comparable<PCB> {
 		}
 
 	}
-	
+        
+        public StringProperty nameProperty()
+        {
+            return new SimpleStringProperty(this.getProcess().getNom());
+        }
+	public StringProperty idProperty()
+        {
+            return new SimpleStringProperty(""+this.getProcess().getId());
+        }
 }
