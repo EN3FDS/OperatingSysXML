@@ -25,6 +25,9 @@ import process.File;
 import process.Process;
 import process.ProcessGen;
 import view.Graphic;
+
+import java.io.IOException;
+
 import interruption.IOHandler;
 
 /**
@@ -53,37 +56,59 @@ public class OS extends Application {
 
 	        public static MenuBar menubar;
 	        public static TableView<Process> table;
-	        
+
+	/**Graphic for the manual mode****************************************************************/
+	        private Stage primaryStage;
+	        private BorderPane mainLayout;
 	        
 
     
-    @Override
-    public void start(Stage stage) throws Exception {
-        // System.out.println("hello");
-/*		try {
-			Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-	                System.out.println("hello");
-	                primaryStage.setTitle("LALA-OS");
-			BorderPane root = new BorderPane(); 
-			Scene scene = new Scene(root,800,550, Color.WHITESMOKE);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-	              
-	                    //***********MENU**********
-	                    
-	                    menubar = new MenuBar(); 
-	                    menubar = Graphic.menu();
-	                    root.setTop(menubar);
-	                    primaryStage.show();
-	                    
-	                    table = new TableView<>();
-	                    table = Graphic.tabview();
-	                    root.setRight(table);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}*/
-    }
-    
+		    @Override
+		    public void start(Stage primaryStage)  {
+		        // System.out.println("hello");
+				try {
+					this.primaryStage = primaryStage;
+					this.primaryStage.setTitle("ManualMode");
+					showView();
+					
+					/*
+					Parent rot = FXMLLoader.load(getClass().getResource("/operatingsystem/Login.fxml"));
+		                        Scene sc = new Scene(rot);
+		                        primaryStage.setScene(sc);
+			             //   System.out.println("hello");
+			                primaryStage.setTitle("LALA-OS");
+		                        primaryStage.show();
+					//BorderPane root = new BorderPane(); 
+					//Scene scene = new Scene(root,800,550, Color.WHITESMOKE);
+				// start	scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+					//primaryStage.setScene(scene);
+			              
+			                    //***********MENU**********
+			                    
+			                 //   menubar = new MenuBar(); 
+			                 //   menubar = Graphic.menu();
+			                 //   root.setTop(menubar);
+			                 //   primaryStage.show();
+			                    
+			                 //   table = new TableView<>();
+			                  //  table = Graphic.tabview();
+			                  //  root.setRight(table);*/
+				} catch(Exception e) {
+					
+					e.printStackTrace();
+				}
+		    }
+		      
+		    private void showView() throws IOException {
+		    	Parent root = FXMLLoader.load(getClass().getResource("/view/ManualGen.fxml"));
+		    	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		    	//FXMLLoader loader = new FXMLLoader();
+		    	//loader.setLocation(getClass().getResource("../view/view.manualMode/ManualGen.fxml"));
+		    	//mainLayout = loader.load();
+		    	Scene scene = new Scene(root);
+		    	primaryStage.setScene(scene);
+		    	primaryStage.show();
+		    }
     
 	private static void startup() {
         
@@ -103,7 +128,7 @@ public class OS extends Application {
 		generateur.start();
 		execute.start();
 		ioHandler.start();
-            //    launch(args);
+                launch(args);
 		
 	}    
 }
