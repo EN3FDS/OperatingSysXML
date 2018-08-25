@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/EN3FDS/SE/src/view/ProcessPane.java</file>
             <file>file:/C:/EN3FDS/SE/src/view/Graphic.java</file>
+            <file>file:/C:/EN3FDS/SE/src/operatingsystem/Scheduler.java</file>
+            <file>file:/C:/EN3FDS/SE/src/view/RamPane.java</file>
+            <file>file:/C:/EN3FDS/SE/src/process/PCB.java</file>
+            <file>file:/C:/EN3FDS/SE/src/operatingsystem/Executor.java</file>
             <file>file:/C:/EN3FDS/SE/src/operatingsystem/OS.java</file>
-            <file>file:/C:/EN3FDS/SE/src/operatingsystem/Login.fxml</file>
-            <file>file:/C:/EN3FDS/SE/src/operatingsystem/LoginController.java</file>
+            <file>file:/C:/EN3FDS/SE/src/process/ProcessGen.java</file>
+            <file>file:/C:/EN3FDS/SE/src/plateforme/Memory.java</file>
+            <file>file:/C:/EN3FDS/SE/src/view/Overview.java</file>
         </group>
     </open-files>
 </project-private>

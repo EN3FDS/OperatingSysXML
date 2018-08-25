@@ -1,6 +1,7 @@
 package operatingsystem;
 
 
+import interruption.IORequest;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
@@ -14,7 +15,7 @@ public class Scheduler {
 	 */
 	private static ArrayList<PCB> processQueue = new ArrayList<>();
 	
-        
+        public static PriorityQueue<IORequest> ioQueue = new PriorityQueue<IORequest>();
         
 	//Getters and Setters
 	public static ArrayList<PCB> getProcessQueue() {
@@ -54,6 +55,16 @@ public class Scheduler {
 		processQueue.addAll(list);
 	}
         
+     public synchronized void addRequestToIOQueue(IORequest ioRequest){
+		ioQueue.add(ioRequest);
+	}
+	public synchronized PCB pickPCBFromReadyQueue() {
+		
+		return readyQueue.poll();
+	}
+	public synchronized IORequest pickRequestFromIOQueue() {
+		return ioQueue.poll();
+	}
         
         
 }

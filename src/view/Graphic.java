@@ -12,7 +12,6 @@ import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-//import operatingsystem.OS;
 
 /**
  *
@@ -20,6 +19,7 @@ import javafx.scene.control.MenuItem;
  */
 public class Graphic extends BorderPane
 {
+    
     public Graphic()
     {
         Tab overviewTab = new Tab("Overview");
@@ -28,11 +28,11 @@ public class Graphic extends BorderPane
 				
 
 		Overview overview = new Overview();
-		//RamPane memoryPane = new RamPane();
+		RamPane memory = new RamPane();
 		//DiskPane diskPane = new DiskPane();
 
 		overviewTab.setContent(overview);
-		//memoryTab.setContent(memoryPane);
+		memoryTab.setContent(memory);
 		//diskTab.setContent(diskPane);
 
 		TabPane onglets = new TabPane(overviewTab, memoryTab, diskTab);
@@ -42,7 +42,7 @@ public class Graphic extends BorderPane
 		this.setCenter(onglets);
     }
     
-    
+    //methode qui permet de creer le menubar
     public MenuBar Menu()
     {
         MenuBar menu = new MenuBar();
