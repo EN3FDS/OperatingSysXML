@@ -28,6 +28,8 @@ import view.Graphic;
 
 import java.io.IOException;
 
+import com.sun.corba.se.impl.orbutil.graph.Graph;
+
 import interruption.IOHandler;
 
 /**
@@ -100,7 +102,7 @@ public class OS extends Application {
 		    }
 		      
 		    private void showView() throws IOException {
-		    	Parent root = FXMLLoader.load(getClass().getResource("/view/ManualGen.fxml"));
+		    	Parent root = FXMLLoader.load(OS.class.getResource("view/Graphic.fxml"));
 		    	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		    	//FXMLLoader loader = new FXMLLoader();
 		    	//loader.setLocation(getClass().getResource("../view/view.manualMode/ManualGen.fxml"));
