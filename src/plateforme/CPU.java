@@ -81,7 +81,7 @@ public class CPU extends Thread{
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 					}
-					System.out.println("________ExecutingProcess_______-_ ID =" +pcb.getPid());
+					System.out.println("________ExecutingInstruction_____ " +pcb.getAddressIP());
 					// Quand on arrive a la fin du processus
 					// On génère le systemcall de fin de programme
 					if (pcb.getAddressIP() == pcb.getFinalAddress()) {

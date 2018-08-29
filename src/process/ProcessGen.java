@@ -14,7 +14,7 @@ public class ProcessGen extends Thread {
 	Random random =  new Random();
 	int timeSleep;
 	int minTime = 50;
-	int maxTime = 100;
+	int maxTime = 200;
 	
 	private Random rand= new Random();
 	int num;
@@ -27,23 +27,22 @@ public class ProcessGen extends Thread {
 	public void run() {
 		while(true) {	
 			timeSleep = random.nextInt(maxTime - minTime) + minTime;
-			if (Scheduler.getReadyQueue().size() == 5) {
+			try {
+				Thread.sleep(timeSleep);
+			}catch(Exception e) {
+				
+			}
+			if (Scheduler.getReadyQueue().size() == 7) {
 				try {
-					Thread.sleep(timeSleep);
-				}catch(Exception e) {
-					
-				}
-				try {
-					System.out.println("###########queue pleine###########");
-					Thread.sleep(3000);
+					Thread.sleep(5000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}else if (Scheduler.getReadyQueue().size() < 5){
+			}else if (Scheduler.getReadyQueue().size() < 7){
 				try {
 					//Generation du processus
-					OS.interruption.makeInterruption(rand.nextInt(5), 1);
+					OS.interruption.makeInterruption(rand.nextInt(7), 1);
 					
 				} catch (/*Interrupted*/Exception e) {
 					System.out.println("Proces Not Generated");

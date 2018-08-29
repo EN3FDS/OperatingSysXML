@@ -34,6 +34,14 @@ public class SystemCall {
 					}
 				}
 				AppFile appFile = (AppFile) Disk.fileOnDisk.get(numApp);
+				if(OS.RAM.getTailleDispo() <= appFile.getInstructions().size()) {
+					//On fait u return, ce qui signifie qui le processus n'est pas créé
+					//On va aussi mettre un log ici pour indiquer l'abandon du processus
+					System.out.println("@@@@@@@@@@@@Memoire pleine@@@@@@@@@@@@@@@");
+					
+					return;
+				}
+				
 				Process p = new Process(OS.IDProcess, appFile.getName(), numApp, appFile.getInstructions());
 				
 				//augmenter de 1 la variable qui crée les identifiants pour les processus

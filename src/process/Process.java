@@ -15,6 +15,7 @@ public class Process {
 		this.nom = s;
 		this.instructions = instructions;
 		numApp = app;
+		this.size = instructions.size();
 	}
 	public ArrayList<Instruction> getInstructions() {
 		return instructions;

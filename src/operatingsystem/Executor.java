@@ -14,8 +14,8 @@ public class Executor extends Thread {
 	 */
 	Random rand =  new Random();
 	int timeSleep;
-	int minTime = 150;
-	int maxTime = 300;
+	int minTime = 100;
+	int maxTime = 200;
 	
 	/*Constructor
 	 */
@@ -24,6 +24,11 @@ public class Executor extends Thread {
 		super(string);
 	}
 	public void run() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+		}
 		while(true) {
 			timeSleep = rand.nextInt(maxTime - minTime) + minTime;
 			try {
@@ -33,7 +38,7 @@ public class Executor extends Thread {
 			}
 			
 			try {
-				System.out.println("La ready queue a "+Scheduler.getReadyQueue().size()+" processus.");
+					//System.out.println("La ready queue a "+Scheduler.getReadyQueue().size()+" processus.");
 				//on retire le pcb de la liste readyqueue
 				PCB pcb = OS.scheduler.removePCBFromReadyQueue(); 
 				System.out.println("ID du processus: "+ pcb.getPid());

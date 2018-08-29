@@ -11,8 +11,8 @@ public class IOHandler extends Thread{
 	 */
 	Random rand =  new Random();
 	int timeSleep;
-	int minTime = 500;
-	int maxTime = 1000;
+	int minTime = 1000;
+	int maxTime = 2000;
 	
 	public void run() {
 		while(true) {
