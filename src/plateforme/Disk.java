@@ -34,6 +34,7 @@ public class Disk {
 	 * Load The OS to the Disk
 	 */
 	public void loadOS() {
+		OS.outlog("Loading OS>>>");
 		ArrayList<Instruction> instructions = new ArrayList<>();
 		
 		Instruction instruction;
@@ -41,7 +42,7 @@ public class Disk {
 		byte i;
 		// Load OperatingSys
 		//creation des instructions de l'app
-		for (i = 0; i < 15000 ; i++ ) {
+		for (i = 0; i < 1500 ; i++ ) {
 			instruction = new Instruction(false,i);
 			instructions.add(instruction);
 		}
@@ -49,6 +50,7 @@ public class Disk {
 		write(OperatingSys);
 		tailleDispo = tailleDispo - instructions.size();
 		
+	
 	}
 
 	/*
@@ -65,7 +67,7 @@ public class Disk {
 		byte i;
 		// Load MuzixPlayer
 		//creation des instructions de l'app
-		System.out.println("Loading Player");
+		OS.outlog("Loading Player");
 		for (i = 0; i < 15 ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
@@ -77,7 +79,7 @@ public class Disk {
 		
 		// Load Tetris
 		//creation des instructions de l'app
-		System.out.println("Loading Tetris");
+		OS.outlog("Loading Tetris");
 		instructions = new ArrayList<>(); //reinitialisation de l'arraylist des instructions
 		for (i = 0; i < 20 ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
@@ -90,7 +92,7 @@ public class Disk {
 		
 		// Load Calculator
 		//creation des instructions de l'app
-		System.out.println("Loading Calculator");
+		OS.outlog("Loading Calculator");
 		instructions = new ArrayList<>(); //reinitialisation de l'ArrayList des instructions
 		for (i = 0; i < 11 ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
@@ -103,7 +105,7 @@ public class Disk {
 		
 		// Load Writer
 		//creation des instructions de l'app
-		System.out.println("Loading Writer");
+		OS.outlog("Loading Writer");
 		instructions = new ArrayList<>(); //reinitialisation de l'ArrayList des instructions
 		for (i = 0; i < 50 ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
@@ -116,7 +118,7 @@ public class Disk {
 
 		// Load FIFA
 		//creation des instructions de l'app
-		System.out.println("Loading FIFA");
+		OS.outlog("Loading FIFA");
 		instructions = new ArrayList<>(); //reinitialisation de l'ArrayList des instructions
 		for (i = 0; i < 70; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
@@ -129,7 +131,7 @@ public class Disk {
 		
 		// Load PhotoViewer
 		//creation des instructions de l'app
-		System.out.println("Loading PhotoViewer");
+		OS.outlog("Loading PhotoViewer");
 		instructions = new ArrayList<>(); //reinitialisation de l'arraylist des instructions
 		for (i = 0; i < 40 ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
@@ -142,7 +144,7 @@ public class Disk {
 		
 		// Load MovieMaker
 		//creation des instructions de l'app
-		System.out.println("Loading MovieMaker");
+		OS.outlog("Loading MovieMaker");
 		instructions = new ArrayList<>(); //reinitialisation de l'arraylist des instructions
 		for (i = 0; i < 55 ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
@@ -153,6 +155,19 @@ public class Disk {
 		tailleDispo = tailleDispo - instructions.size();
 		fileOnDisk.add(MovieMaker);
 		
+		// Load Browser
+		//creation des instructions de l'app
+		OS.outlog("Loading Browser");
+		instructions = new ArrayList<>(); //reinitialisation de l'arraylist des instructions
+		for (i = 0; i < 55 ; i++ ) {
+			instruction = new Instruction(rand.nextBoolean(),i);
+			instructions.add(instruction);
+		}
+		AppFile Browser = new AppFile(OS.userFile,"Browser",10,instructions);
+		write(Browser);
+		tailleDispo = tailleDispo - instructions.size();
+		fileOnDisk.add(Browser);
+
 	}
 	
 }

@@ -24,6 +24,9 @@ import process.File;
 import process.Process;
 import process.ProcessGen;
 import view.Graphic;
+
+import java.io.PrintStream;
+
 import interruption.IOHandler;
 
 /**
@@ -51,6 +54,8 @@ public class OS extends Application {
 	        public static MenuBar menubar;
 	        public static TableView<Process> table;
 	        
+	        //Fichier Log qui gardera trace de toutes les actions du systeme
+	        public static PrintStream log;
 	        
 
     
@@ -83,24 +88,42 @@ public class OS extends Application {
     
     
 	private static void startup() {
+		
+        disk.loadOS();
         
-		System.out.println("loading app");
+        outlog("BIOS ...");
+		outlog("POST ...");
+		// Memoire principale
+		outlog("RAM ... ok!");
+		// Memoire secondaire
+		outlog("Disk ... ok!");
+		// BIOS
+		outlog("Loading Operating System ...");
+		outlog("	");
+		outlog("Setup...");
+		outlog("Initialisation...");
+		outlog("Start Kernel...");     
+		outlog("Loading Application on Disk");
 		disk.loadAppOnDisk();
 	}
 	
 	public static void main(String[] args) {
 	//	Main.RAM.AddProcessToList(Main.disk.p1000);
 		startup();
-		System.out.println("Finishing Loading App");
+		outlog("Finishing Loading App");
 		
 		generateur = new ProcessGen("Generateur");
 		 execute = new Executor("Executeur");
 		 ioHandler = new IOHandler("IOHandler");
-		 System.out.println("Launching threads");
+		 outlog("Launching threads");
 		generateur.start();
 		execute.start();
 		ioHandler.start();
             //    launch(args);
 		
-	}    
+	}   
+	
+	public static void outlog(String message) {
+		log.println(message);
+	}
 }
