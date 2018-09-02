@@ -12,11 +12,11 @@ public class MMU {
 	/**
 	 * Methode d'allocations et de desallocation de memoire
 	 **/
-	 public synchronized void allocateMemoryToProcess(Process process,int priority,int numApp) {
+	 public synchronized void allocateMemoryToProcess(Process process, int priority, int numApp) {
 		 
 		 int taille=  process.getSize();
 		 //Diminution de la taille disponible dans la memoire
-		 OS.RAM.setTailleDispo(OS.RAM.getTailleDispo()-taille);
+		 OS.RAM.setTailleDispo(OS.RAM.getTailleDispo() - taille);
 		 
 		 //Création du PCB
 		 PCB PCB = new PCB(process , priority);
@@ -24,15 +24,14 @@ public class MMU {
 		 //Ajouter le PCB dans les files concernées
 		 OS.scheduler.addPCBToReadyQueue(PCB); 
 		 OS.scheduler.addPCBToProcessQueue(PCB);
-		 
+		 OS.outlog("Process "+PCB.getPid()+" ready");
 		 //Ajouter le processus dans la liste des process sur le ram
 		 OS.RAM.ListOfProcess.add(numApp);
-		 
+
 
 	 }
 	 
 	 public synchronized void deallocateMemoryFromProcess(Process process, int numApp) {
-			//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$"+OS.RAM.ListOfProcess.size());
 		 int taille=  process.getSize();
 		 OS.RAM.setTailleDispo(OS.RAM.getTailleDispo()+taille);
 		 
@@ -45,13 +44,14 @@ public class MMU {
 			for(int i = 0; i< OS.RAM.ListOfProcess.size(); i++)
 				{
 					if (OS.RAM.ListOfProcess.get(i) != numApp) {
-
 						list.add(OS.RAM.ListOfProcess.get(i));
 					}
 				}
 
 			OS.RAM.ListOfProcess = new ArrayList<>();
 			OS.RAM.ListOfProcess.addAll(list);
+			
+			OS.outlog("Process with ID: " + process.getId() + " Removed From Memory");
 		 
 	 }
 	 

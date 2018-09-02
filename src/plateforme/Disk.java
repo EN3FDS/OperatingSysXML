@@ -19,8 +19,8 @@ public class Disk {
 	public int getTailleDispo() {
 		return tailleDispo;
 	}
-	public static void setTailleDispo(int tailleDispo) {
-		tailleDispo = tailleDispo;
+	public static void setTailleDispo(int taille) {
+		tailleDispo = taille;
 	}
 	public int getSize() {
 		return size;
@@ -34,14 +34,15 @@ public class Disk {
 	 * Load The OS to the Disk
 	 */
 	public void loadOS() {
+		OS.outlog("Loading OS>>>");
 		ArrayList<Instruction> instructions = new ArrayList<>();
-		Random rand = new Random();
+		
 		Instruction instruction;
 		
 		byte i;
 		// Load OperatingSys
 		//creation des instructions de l'app
-		for (i = 0; i < 15000 ; i++ ) {
+		for (i = 0; i < 1500 ; i++ ) {
 			instruction = new Instruction(false,i);
 			instructions.add(instruction);
 		}
@@ -49,6 +50,7 @@ public class Disk {
 		write(OperatingSys);
 		tailleDispo = tailleDispo - instructions.size();
 		
+	
 	}
 
 	/*
@@ -65,21 +67,21 @@ public class Disk {
 		byte i;
 		// Load MuzixPlayer
 		//creation des instructions de l'app
-		System.out.println("Loading Player");
-		for (i = 0; i < 10/*1000*/ ; i++ ) {
+		OS.outlog("Loading Player");
+		for (i = 0; i < 15 ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
 		}
-		AppFile MusicPlayer = new AppFile(OS.userFile,"MusicPlayer",20,instructions);
+		AppFile MusicPlayer = new AppFile(OS.userFile,"MusicPlayer",10,instructions);
 		write(MusicPlayer);
 		tailleDispo = tailleDispo - instructions.size();
 		fileOnDisk.add(MusicPlayer);
 		
 		// Load Tetris
 		//creation des instructions de l'app
-		System.out.println("Loading Tetris");
+		OS.outlog("Loading Tetris");
 		instructions = new ArrayList<>(); //reinitialisation de l'arraylist des instructions
-		for (i = 0; i < 10/*2000*/ ; i++ ) {
+		for (i = 0; i < 20 ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
 		}
@@ -90,9 +92,9 @@ public class Disk {
 		
 		// Load Calculator
 		//creation des instructions de l'app
-		System.out.println("Loading Calculator");
+		OS.outlog("Loading Calculator");
 		instructions = new ArrayList<>(); //reinitialisation de l'ArrayList des instructions
-		for (i = 0; i < 10 /*1000*/ ; i++ ) {
+		for (i = 0; i < 11 ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
 		}
@@ -103,30 +105,69 @@ public class Disk {
 		
 		// Load Writer
 		//creation des instructions de l'app
-		System.out.println("Loading Writer");
+		OS.outlog("Loading Writer");
 		instructions = new ArrayList<>(); //reinitialisation de l'ArrayList des instructions
-		for (i = 0; i < 10 /*3000*/ ; i++ ) {
+		for (i = 0; i < 50 ; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
 		}
-		AppFile Writer = new AppFile(OS.userFile,"Writer",50,instructions);
+		AppFile Writer = new AppFile(OS.userFile,"Writer",10,instructions);
 		write(Writer);
 		tailleDispo = tailleDispo - instructions.size();
 		fileOnDisk.add(Writer);
 
 		// Load FIFA
 		//creation des instructions de l'app
-		System.out.println("Loading FIFA");
+		OS.outlog("Loading FIFA");
 		instructions = new ArrayList<>(); //reinitialisation de l'ArrayList des instructions
-		for (i = 0; i < 10 /*7000*/ ; i++ ) {
+		for (i = 0; i < 70; i++ ) {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
 		}
-		AppFile FIFA = new AppFile(OS.userFile,"FIFA",100,instructions);
+		AppFile FIFA = new AppFile(OS.userFile,"FIFA",10,instructions);
 		write(FIFA);
 		tailleDispo = tailleDispo - instructions.size();
 		fileOnDisk.add(FIFA);
 		
+		// Load PhotoViewer
+		//creation des instructions de l'app
+		OS.outlog("Loading PhotoViewer");
+		instructions = new ArrayList<>(); //reinitialisation de l'arraylist des instructions
+		for (i = 0; i < 40 ; i++ ) {
+			instruction = new Instruction(rand.nextBoolean(),i);
+			instructions.add(instruction);
+		}
+		AppFile PhotoViewer = new AppFile(OS.userFile,"PhotoViewer",10,instructions);
+		write(PhotoViewer);
+		tailleDispo = tailleDispo - instructions.size();
+		fileOnDisk.add(PhotoViewer);
+		
+		// Load MovieMaker
+		//creation des instructions de l'app
+		OS.outlog("Loading MovieMaker");
+		instructions = new ArrayList<>(); //reinitialisation de l'arraylist des instructions
+		for (i = 0; i < 55 ; i++ ) {
+			instruction = new Instruction(rand.nextBoolean(),i);
+			instructions.add(instruction);
+		}
+		AppFile MovieMaker = new AppFile(OS.userFile,"MovieMaker",10,instructions);
+		write(MovieMaker);
+		tailleDispo = tailleDispo - instructions.size();
+		fileOnDisk.add(MovieMaker);
+		
+		// Load Browser
+		//creation des instructions de l'app
+		OS.outlog("Loading Browser");
+		instructions = new ArrayList<>(); //reinitialisation de l'arraylist des instructions
+		for (i = 0; i < 55 ; i++ ) {
+			instruction = new Instruction(rand.nextBoolean(),i);
+			instructions.add(instruction);
+		}
+		AppFile Browser = new AppFile(OS.userFile,"Browser",10,instructions);
+		write(Browser);
+		tailleDispo = tailleDispo - instructions.size();
+		fileOnDisk.add(Browser);
+
 	}
 	
 }

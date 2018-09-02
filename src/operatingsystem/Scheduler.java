@@ -41,6 +41,7 @@ public class Scheduler {
 	//ajouter un PCB dans la file
 	public synchronized void addPCBToReadyQueue(PCB pcb) {
 		lock.lock();
+		OS.outlog("Scheduler -> Add PCB of Process "+ pcb.getPid()+" to ReadyQueue");
 		try {
 			readyQueue.add(pcb);
 		}
@@ -52,6 +53,7 @@ public class Scheduler {
 	
 	public synchronized void addPCBToProcessQueue(PCB pcb) {
 		lock.lock();
+		OS.outlog("Scheduler -> Add PCB of Process "+ pcb.getPid()+" to ProcessQueue");
 		try {
 			processQueue.add(pcb);
 		}
@@ -65,6 +67,7 @@ public class Scheduler {
 	
 	public synchronized PCB removePCBFromReadyQueue() {
 		lock.lock();
+		OS.outlog("Scheduler -> Picking PCB from ReadyQueue");
 		try {
 			return readyQueue.poll();
 		}
@@ -84,12 +87,14 @@ public class Scheduler {
 		});
 		processQueue = new ArrayList<>();
 		processQueue.addAll(list);
+		OS.outlog("Scheduler -> Remove PCB of Process "+ pcb.getPid()+" from ProcessQueue");
 	}
 	
 	//Ajouter une requete a la liste
 	public synchronized void addRequestToIOQueue(IORequest ioRequest){
 		lock.lock();
 		try {
+			OS.outlog("Scheduler -> Add Request of Process "+ ioRequest.getPcb().getPid() +" to IOQueue");
 			ioRequestQueue.add(ioRequest);
 		}
 		finally {
@@ -101,6 +106,7 @@ public class Scheduler {
 	public synchronized IORequest pickRequestFromIOQueue() {
 		lock.lock();
 		try {
+			OS.outlog("Scheduler -> Picking Request from IOQueue");
 			return ioRequestQueue.poll();
 		}
 		finally {

@@ -11,8 +11,8 @@ public class IOHandler extends Thread{
 	 */
 	Random rand =  new Random();
 	int timeSleep;
-	int minTime = 500;
-	int maxTime = 1000;
+	int minTime = 1000;
+	int maxTime = 2000;
 	
 	public void run() {
 		while(true) {
@@ -23,11 +23,12 @@ public class IOHandler extends Thread{
 			try {
 				
 				pcb = OS.scheduler.pickRequestFromIOQueue().getPcb();
-				
+				OS.outlog("IOHandler -> IO Interruption from Process "+pcb.getPid()+" Treated");
 				//Simulates the handling of the IORequest
 				Thread.sleep(timeSleep);
 				
-				OS.scheduler.addPCBToReadyQueue(pcb);
+				OS.outlog("IOHandler -> Process "+pcb.getPid()+" ready");
+				OS.scheduler.addPCBToReadyQueue(pcb);				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				
