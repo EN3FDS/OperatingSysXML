@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 
 
-public class AppFile extends File {
+public class AppFile extends Fichier {
 	private ArrayList<Instruction> instructions = new ArrayList<>();
 	private final int priority; 
 	
-	public AppFile(File parent,String name,int priority,ArrayList<Instruction> instructions){
+	public AppFile(Fichier parent,String name,int priority,ArrayList<Instruction> instructions){
 		super(parent,name, false);
 		this.instructions = instructions;
 		this.priority = priority;

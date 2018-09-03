@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 
 
-public class File {
-	private File fichierParent;
+public class Fichier {
+	private Fichier fichierParent;
 	private final String path;
 	protected String name;
 	protected boolean directory = false;
-	private ArrayList<File> listFichiers = new ArrayList<>();
+	private ArrayList<Fichier> listFichiers = new ArrayList<>();
 	protected ArrayList<Integer> listBlock = new ArrayList<>();
 	
 	
-	public File(File parent,String name,boolean directory ){
+	public Fichier(Fichier parent,String name,boolean directory ){
 		this.fichierParent = parent;
 		this.name = name;
 		this.directory = directory;
@@ -37,7 +37,7 @@ public class File {
 	}
 	public int getSIZE_B() {
 		int size = 0;
-		for(File fichier : listFichiers){
+		for(Fichier fichier : listFichiers){
 			size+= fichier.getSIZE_B();
 		}
 		return size;
@@ -45,7 +45,7 @@ public class File {
 	public String getPath() {
 		return path;
 	}
-	public File getFichierParent() {
+	public Fichier getFichierParent() {
 		return fichierParent;
 	}
 	public String toString() {

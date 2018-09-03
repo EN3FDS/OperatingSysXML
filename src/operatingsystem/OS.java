@@ -20,24 +20,26 @@ import plateforme.CPU;
 import plateforme.Disk;
 import plateforme.MMU;
 import plateforme.Memory;
-import process.File;
+import process.Fichier;
 import process.Process;
 import process.ProcessGen;
 import view.Graphic;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 import interruption.IOHandler;
 
 /**
  *
- * @author Nahomie Labonté
+ * @author Nahomie Labontï¿½
  */
 public class OS extends Application {
 	// fichier root
-		public static File rootFile = new File(null, "root", true);
+		public static Fichier rootFile = new Fichier(null, "root", true);
 		// fichier user
-		public static File userFile = new File(rootFile, "user", true);
+		public static Fichier userFile = new Fichier(rootFile, "user", true);
 
 		
 		public static MMU mmu = new MMU();
@@ -89,7 +91,13 @@ public class OS extends Application {
     
 	private static void startup() {
 		
-        disk.loadOS();
+		try {
+			log = new PrintStream(new File( "log.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       // disk.loadOS();
         
         outlog("BIOS ...");
 		outlog("POST ...");
