@@ -5,14 +5,14 @@ import java.util.Random;
 import operatingsystem.OS;
 import process.Instruction;
 import process.AppFile;
-import process.File;
+import process.Fichier;
 
 public class Disk {
 	private static final int size = 10*1024*1024; // GB convertit en KB
 
 	private static int tailleDispo = size;
 	
-	public static ArrayList<File> fileOnDisk = new ArrayList<>();
+	public static ArrayList<Fichier> fileOnDisk = new ArrayList<>();
 	
 	
 	
@@ -34,7 +34,9 @@ public class Disk {
 	 * Load The OS to the Disk
 	 */
 	public void loadOS() {
-		OS.outlog("Loading OS>>>");
+		OS.outlog("Disk -> Loading OS>>>");
+		
+		System.out.println("BUG FIXX");
 		ArrayList<Instruction> instructions = new ArrayList<>();
 		
 		Instruction instruction;
