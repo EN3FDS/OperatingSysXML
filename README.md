@@ -33,7 +33,8 @@ Here is the _flow_ of a process, from the creation to the death
 * [X] Interruption are handled  by the interrupt handler
 * [X] Each interruption is referenced in the interruption vector table and/ or the syscall table
 * [X] After the interruption, the program must return at the exact same place where it was executing
-* [ ] The process that made the interruption is added to a  the waiting queue
+* [X] The process that made the interruption is added to a  the waiting queue
+* [ ] User can see via the GUI the procces from creation to death
 
 
 
