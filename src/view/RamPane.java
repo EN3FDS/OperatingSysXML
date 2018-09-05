@@ -19,7 +19,7 @@ import javafx.scene.layout.GridPane;
 
 /**
  *
- * @author SOLITIONS PC_01
+ * @author Nahomie Labonte
  */
 public class RamPane extends BorderPane {
     private static Data used_OsRam = new Data("OS", 0);

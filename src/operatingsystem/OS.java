@@ -46,6 +46,7 @@ public class OS extends Application {
 		public static Memory RAM = new Memory();
 		public static Scheduler scheduler= new Scheduler();
 		public static ProcessGen generateur;
+		public static Swapper swapper;
 		public static Disk disk = new Disk();
 		public static CPU cpu = new CPU();
 		public static Executor execute;
@@ -59,20 +60,22 @@ public class OS extends Application {
 	        //Fichier Log qui gardera trace de toutes les actions du systeme
 	        public static PrintStream log;
 	        
-
+	    public static Stage primaryStage;
     
     @Override
     public void start(Stage stage) throws Exception {
         // System.out.println("hello");
-/*		try {
-			Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+		try {
+			//Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
 	                System.out.println("hello");
-	                primaryStage.setTitle("LALA-OS");
+	               primaryStage = stage;
+					primaryStage.setTitle("LALA-OS");
 			BorderPane root = new BorderPane(); 
 			Scene scene = new Scene(root,800,550, Color.WHITESMOKE);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
-	              
+			primaryStage.show();
+	              /*
 	                    //***********MENU**********
 	                    
 	                    menubar = new MenuBar(); 
@@ -82,10 +85,10 @@ public class OS extends Application {
 	                    
 	                    table = new TableView<>();
 	                    table = Graphic.tabview();
-	                    root.setRight(table);
+	                    root.setRight(table);*/
 		} catch(Exception e) {
 			e.printStackTrace();
-		}*/
+		}
     }
     
     
@@ -123,11 +126,13 @@ public class OS extends Application {
 		generateur = new ProcessGen("Generateur");
 		 execute = new Executor("Executeur");
 		 ioHandler = new IOHandler("IOHandler");
+		 swapper = new Swapper();
 		 outlog("Launching threads");
 		generateur.start();
 		execute.start();
 		ioHandler.start();
-            //    launch(args);
+		swapper.start();
+               // launch(args);
 		
 	}   
 	

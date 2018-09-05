@@ -1,6 +1,8 @@
 package interruption;
 
 import java.util.Random;
+import java.time.Instant;
+import java.util.Date;
 
 import operatingsystem.OS;
 import process.PCB;
@@ -11,8 +13,8 @@ public class IOHandler extends Thread{
 	 */
 	Random rand =  new Random();
 	int timeSleep;
-	int minTime = 1000;
-	int maxTime = 2000;
+	int minTime = 75;
+	int maxTime = 150;
 	
 	public void run() {
 		while(true) {
@@ -21,6 +23,7 @@ public class IOHandler extends Thread{
 			//Picking the PCB from the IOQueue			
 			PCB pcb;
 			try {
+				Thread.sleep(timeSleep);
 				
 				pcb = OS.scheduler.pickRequestFromIOQueue().getPcb();
 				OS.outlog("IOHandler -> IO Interruption from Process "+pcb.getPid()+" Treated");
@@ -28,6 +31,7 @@ public class IOHandler extends Thread{
 				Thread.sleep(timeSleep);
 				
 				OS.outlog("IOHandler -> Process "+pcb.getPid()+" ready");
+				pcb.setDateCreated(Date.from(Instant.now()));
 				OS.scheduler.addPCBToReadyQueue(pcb);				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

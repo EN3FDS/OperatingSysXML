@@ -14,7 +14,7 @@ public class ProcessGen extends Thread {
 	Random random =  new Random();
 	int timeSleep;
 	int minTime = 50;
-	int maxTime = 200;
+	int maxTime = 100;
 	
 	private Random rand= new Random();
 	int num;

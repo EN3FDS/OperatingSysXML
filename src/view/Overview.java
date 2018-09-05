@@ -6,6 +6,7 @@
 package view;
 
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
@@ -18,7 +19,7 @@ import process.PCB;
 
 /**
  *
- * @author SOLITIONS PC_01
+ * @author Nahomie Labonte
  */
 public class Overview extends BorderPane{
     private FlowPane fPane = new FlowPane();
@@ -26,7 +27,7 @@ public class Overview extends BorderPane{
     private static ListView<PCB> listReadyQueue = new ListView<>();
     private static ListView<PCB> listIOQueue = new ListView<>();
     private static GridPane infoCurrentProcess = new GridPane();
-   private static Label idProcess = new Label("");
+    private static Label idProcess = new Label("");
     private static Label nameProcess = new Label("");
     private static Label sizeProcess = new Label("");
     private static ProgressBar progressBar = new ProgressBar();
@@ -113,10 +114,10 @@ public class Overview extends BorderPane{
 	}*/
     
    
-    /*public synchronized static void refreshProgressBar(int current, int MAX) {
+    public synchronized static void refreshProgressBar(int current, int MAX) {
 		Platform.runLater(() -> {
 			progressBar.setProgress(((double) current / (double) MAX));
 		});
-	}*/
+	}
     
 }
