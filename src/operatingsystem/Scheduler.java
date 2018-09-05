@@ -15,6 +15,7 @@ public class Scheduler {
 	public static Lock lock = new ReentrantLock();
 	
 	private static PriorityQueue<PCB> readyQueue = new PriorityQueue<PCB>();
+	private static PriorityQueue<PCB> swapQueue = new PriorityQueue<PCB>();
 	
 	//Queue pour les requete IO
 	public static PriorityQueue<IORequest> ioRequestQueue = new PriorityQueue<IORequest>();
@@ -56,6 +57,31 @@ public class Scheduler {
 		OS.outlog("Scheduler -> Add PCB of Process "+ pcb.getPid()+" to ProcessQueue");
 		try {
 			processQueue.add(pcb);
+		}
+		finally {
+			lock.unlock();
+		}
+		
+	}
+	
+	//Add PCB to Swapping QUeue
+	public synchronized void addPCBToSwapQueue(PCB pcb) {
+		lock.lock();
+		OS.outlog("Scheduler -> Add PCB of Process "+ pcb.getPid()+" to SwapQueue");
+		try {
+			swapQueue.add(pcb);
+		}
+		finally {
+			lock.unlock();
+		}		
+	}
+	
+	//RemovePCB from swap queue
+	public synchronized PCB pickPCBFromSwapQueue() {
+		lock.lock();
+		OS.outlog("Scheduler -> Picking PCB from SwapQueue");
+		try {
+			return swapQueue.poll();
 		}
 		finally {
 			lock.unlock();
@@ -112,5 +138,28 @@ public class Scheduler {
 		finally {
 			lock.unlock();
 		}		
+	}
+	
+	public synchronized PCB getTailPCBFromReadyQueue() {
+		// COpy the Ready queue to a temporary ready queue
+		PriorityQueue<PCB> readyQueueTemp = new PriorityQueue<PCB>();
+		 
+		//PCB pp =readyQueue.poll();
+		
+		// We take all the PCB except the last one
+		while(readyQueue.size()>1)
+		{
+			readyQueueTemp.add(readyQueue.poll());
+			
+		}
+		PCB p = readyQueue.poll();
+		while(readyQueueTemp.size()>0)
+		{
+			readyQueue.add(readyQueueTemp.poll());
+			
+		}
+		System.out.println("!@#$%^&*Getting the tail Process ID (*&^%$#@!" + p.getPid());
+		//We return the Last PCB
+		return p;
 	}
 }

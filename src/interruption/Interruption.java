@@ -33,7 +33,7 @@ public class Interruption extends Thread {
 			//IO interrupt
 			IORequest ioRequest = new IORequest(OS.RAM.currentPCB, OS.RAM.currentPCB.getPid());
 			OS.scheduler.addRequestToIOQueue(ioRequest);
-			System.out.println("la que des requetes IO a "+ Scheduler.getIoRequestQueue().size()+" IORequest");
+			
 									
 		}
 	}

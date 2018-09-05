@@ -12,6 +12,10 @@ public class PCB implements Comparable<PCB> {
 	private String status;
 	private int priority;
 	private Date DateCreated;
+	public void setDateCreated(Date dateCreated) {
+		DateCreated = dateCreated;
+	}
+
 	private byte addressIP = 0;// recevra l'adresse de la prochaine instruction a executer 
 	private byte finalAddress;//recevra l'adresse de la derniere instruction du programme 
 	private Process process;

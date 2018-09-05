@@ -36,17 +36,28 @@ public class SystemCall {
 				}
 				AppFile appFile = (AppFile) Disk.fileOnDisk.get(numApp);
 				if(OS.RAM.getTailleDispo() <= appFile.getInstructions().size()) {
-					//On fait u return, ce qui signifie qui le processus n'est pas créé
-					//On va aussi mettre un log ici pour indiquer l'abandon du processus
+					//On fait la demande de swapping, si cela ne fonctionne pas on abandonne la fonction					
 					System.out.println("@@@@@@@@@@@@Memoire pleine@@@@@@@@@@@@@@@");
-					OS.outlog("SystemCall -> Memory Full. Cannot create Process");
 					
-					return;
+					try {
+						
+						OS.outlog("SystemCall -> Memory Full. Swapping");
+						Process p = new Process(OS.IDProcess, appFile.getName(), numApp, appFile.getInstructions(),appFile.getPriority());
+						OS.mmu.makeSwappingNewProcess(p);
+						
+					}catch(Exception e) {
+						System.out.println("SWAPPINGNew Failed");
+						OS.outlog("OS -> Cannot Make Swapping");
+						OS.outlog(e.getMessage());
+						return;
+					}
+					
+					
 				}
 				
 				Process p = new Process(OS.IDProcess, appFile.getName(), numApp, appFile.getInstructions());
 				OS.outlog("SystemCall -> Process Created. ID: "+p.getId()+"\tProgram name: "+appFile.getName());
-				//augmenter de 1 la variable qui crée les identifiants pour les processus
+				//augmenter de 1 la variable qui crï¿½e les identifiants pour les processus
 				OS.IDProcess++; 
 				
 				//Allouer la memoire au processus
@@ -55,7 +66,7 @@ public class SystemCall {
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println("Processus Non Créé");
+				System.out.println("Processus Non Crï¿½ï¿½");
 				OS.outlog("SystemCall -> Cannot create Process");
 				OS.outlog(e.getMessage());
 			}		

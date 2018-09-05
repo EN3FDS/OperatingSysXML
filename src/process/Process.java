@@ -7,7 +7,17 @@ public class Process {
 	private String nom;
 	private int size;
 	private int numApp;
+	private int priority;
 	
+	public int getPriority() {
+		return priority;
+	}
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+
+
+
 	private ArrayList<Instruction> instructions= new ArrayList<>();
 	//Constructor
 	public Process(int i, String s,int app,ArrayList<Instruction> instructions) {
@@ -16,6 +26,14 @@ public class Process {
 		this.instructions = instructions;
 		numApp = app;
 		this.size = instructions.size();
+	}
+	public Process(int i, String s,int app,ArrayList<Instruction> instructions,int priority) {
+		this.id = i;
+		this.nom = s;
+		this.instructions = instructions;
+		numApp = app;
+		this.size = instructions.size();
+		this.priority=priority;
 	}
 	public ArrayList<Instruction> getInstructions() {
 		return instructions;

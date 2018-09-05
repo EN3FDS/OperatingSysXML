@@ -165,7 +165,7 @@ public class Disk {
 			instruction = new Instruction(rand.nextBoolean(),i);
 			instructions.add(instruction);
 		}
-		AppFile Browser = new AppFile(OS.userFile,"Browser",10,instructions);
+		AppFile Browser = new AppFile(OS.userFile,"Browser",20,instructions);
 		write(Browser);
 		tailleDispo = tailleDispo - instructions.size();
 		fileOnDisk.add(Browser);

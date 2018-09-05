@@ -25,7 +25,7 @@ public class Executor extends Thread {
 	}
 	public void run() {
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(100);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 		}

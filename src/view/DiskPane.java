@@ -7,7 +7,7 @@ package view;
 
 /**
  *
- * @author SOLITIONS PC_01
+ * @author Nahomie Labonte
  */
 class DiskPane {
     
